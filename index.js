@@ -7,7 +7,7 @@ const port = process.env.PORT || 3000;
 
 let redisClient;
 
-// =================== Immediately Invoked Function Expression (IIFE) ============ //
+// =================== Immediately Invoked Function Expression (IIFE) =================== //
 (async () => {
   redisClient = redis.createClient();
   redisClient.on("error", (error) => console.error(`Error : ${error}`));
