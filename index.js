@@ -7,11 +7,13 @@ const port = process.env.PORT || 3000;
 
 let redisClient;
 
+// =================== Immediately Invoked Function Expression (IIFE) ============ //
 (async () => {
   redisClient = redis.createClient();
   redisClient.on("error", (error) => console.error(`Error : ${error}`));
   await redisClient.connect();
 })();
+
 async function fetchApiData(species) {
   const apiResponse = await axios.get(
     `https://www.fishwatch.gov/api/species/${species}`
@@ -45,7 +47,7 @@ async function getSpeciesData(req, res) {
   }
 }
 
-app.get("/fish/:species", getSpeciesData);
+app.get("/:species", getSpeciesData);
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
 });
